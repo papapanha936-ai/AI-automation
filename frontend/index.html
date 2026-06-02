@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TokBot - Premium TikTok Automation Control</title>
+    <!-- Tailwind CSS for high-fidelity responsive utility styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome 6 for professional vector interface icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Crisp, clean slate-50 background */
+        }
+        
+        /* Modern minimalist custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+
+        /* Subtle brand neon accents for a light UI contrast */
+        .neon-accent-pink {
+            color: #ff0050;
+        }
+        .neon-accent-cyan {
+            color: #00f2fe;
+        }
+        
+        .brand-gradient-btn {
+            background: linear-gradient(135deg, #ff0050 0%, #00f2fe 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .brand-gradient-btn:hover {
+            filter: brightness(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 242, 254, 0.25);
+        }
+
+        /* Clean, high-end white panel shadows */
+        .premium-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.03), 0 2px 4px -2px rgba(15, 23, 42, 0.03);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .premium-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -4px rgba(15, 23, 42, 0.05);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col overflow-x-hidden">
+
+    <!-- Top Navigation Header -->
+    <header class="h-16 bg-white sticky top-0 z-50 flex items-center justify-between px-4 sm:px-6 border-b border-slate-200 shadow-sm shadow-slate-100/50">
+        <!-- Logo Brand Context -->
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2.5">
+                <div class="p-1.5 bg-slate-900 rounded-lg flex items-center justify-center">
+                    <i class="fa-brands fa-tiktok text-lg text-white"></i>
+                </div>
+                <span class="text-2xl font-black tracking-tight text-slate-900">Tok<span class="text-sky-500">Bot</span></span>
+            </div>
+            <span class="hidden md:inline-block h-5 w-px bg-slate-200"></span>
+            <span class="text-xs font-bold text-slate-500 tracking-wide uppercase hidden md:block">White Label Engine Suite</span>
+        </div>
+
+        <!-- Connection and Status Hub -->
+        <div class="flex items-center gap-4">
+            <!-- Sync Badge -->
+            <div class="hidden sm:flex items-center gap-2 bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-full text-xs font-bold border border-emerald-200/80">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                Automation Online
+            </div>
+
+            <button class="relative p-2 text-slate-400 hover:text-slate-600 transition-colors rounded-lg hover:bg-slate-50">
+                <i class="fa-regular fa-bell text-lg"></i>
+                <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-[#ff0050] rounded-full"></span>
+            </button>
+
+            <span class="h-5 w-px bg-slate-200"></span>
+
+            <!-- Connected Operator Profile -->
+            <div class="flex items-center gap-3">
+                <img src="https://ui-avatars.com/api/?name=Admin+Operator&background=f1f5f9&color=0f172a" alt="Operator Avatar" class="w-8 h-8 rounded-full border border-slate-200">
+                <div class="hidden lg:block text-left">
+                    <p class="text-xs font-bold text-slate-900 leading-none">Admin Workspace</p>
+                    <p class="text-[10px] text-slate-500 mt-0.5">operator_01@tokbot.io</p>
+                </div>
+                <button class="text-slate-400 hover:text-red-500 transition-colors p-1 rounded-lg" title="Reset Session">
+                    <i class="fa-solid fa-rotate-right"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Primary Content Area -->
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 flex flex-col justify-between">
+        <div class="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-center">
+            
+            <!-- Unified 2x2 Clean Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full my-auto">
+                
+                <!-- GRID 1: Top Left - Account Information -->
+                <div class="premium-card rounded-2xl p-6 flex flex-col justify-between h-[410px]">
+                    <div>
+                        <div class="flex justify-between items-center mb-5">
+                            <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-circle-user text-sky-500 text-lg"></i> Synced TikTok Profile
+                            </h2>
+                            <span class="text-[10px] bg-slate-100 text-slate-600 border border-slate-200 font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Linked</span>
+                        </div>
+                        
+                        <!-- Profile Card with White theme styling -->
+                        <div class="flex items-center gap-4 p-4 bg-slate-50 rounded-xl border border-slate-200/60 mb-5">
+                            <div class="relative">
+                                <img src="https://ui-avatars.com/api/?name=Viral+Trends&background=00f2fe&color=0f172a" alt="Target Profile" class="w-14 h-14 rounded-full border border-slate-200">
+                                <div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 border-2 border-white rounded-full" title="Active Connection"></div>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-base flex items-center gap-1.5">
+                                    @viral_creator_99 
+                                    <i class="fa-solid fa-circle-check text-sky-500 text-xs" title="Verified Session Account"></i>
+                                </h3>
+                                <p class="text-xs text-slate-500 flex items-center gap-1.5 mt-0.5">
+                                    <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span> US Eastern Residential Proxy
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Account Metrics Dashboard -->
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="text-center p-3.5 bg-slate-50 border border-slate-100 rounded-xl hover:bg-slate-100/50 transition-colors">
+                                <p class="text-[9px] text-slate-500 uppercase tracking-widest mb-1 font-bold">Followers</p>
+                                <p class="font-extrabold text-slate-900 text-xl tracking-tight">1.2M</p>
+                            </div>
+                            <div class="text-center p-3.5 bg-slate-50 border border-slate-100 rounded-xl hover:bg-slate-100/50 transition-colors">
+                                <p class="text-[9px] text-slate-500 uppercase tracking-widest mb-1 font-bold">Likes</p>
+                                <p class="font-extrabold text-pink-500 text-xl tracking-tight">14.5M</p>
+                            </div>
+                            <div class="text-center p-3.5 bg-slate-50 border border-slate-100 rounded-xl hover:bg-slate-100/50 transition-colors">
+                                <p class="text-[9px] text-slate-500 uppercase tracking-widest mb-1 font-bold">Following</p>
+                                <p class="font-extrabold text-slate-700 text-xl tracking-tight">245</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Network diagnostics -->
+                    <div class="border-t border-slate-100 pt-4 flex justify-between items-center text-xs text-slate-400">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-network-wired text-sky-500"></i> Proxy IP: 198.162.33.109</span>
+                        <span class="font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Ping: 12ms</span>
+                    </div>
+                </div>
+
+                <!-- GRID 2: Top Right - Automation Commands -->
+                <div class="premium-card rounded-2xl p-6 flex flex-col justify-between h-[410px]">
+                    <div>
+                        <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2 mb-4">
+                            <i class="fa-solid fa-wand-magic-sparkles text-pink-500 text-lg"></i> Command Dispatcher
+                        </h2>
+                        
+                        <form id="commandForm" class="space-y-4">
+                            <!-- Link Account & Like Video target input -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2" for="targetLink">
+                                    Link Account and Like Video (Target URL)
+                                </label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+                                        <i class="fa-solid fa-link text-xs"></i>
+                                    </div>
+                                    <input type="url" id="targetLink" required 
+                                        placeholder="https://www.tiktok.com/@creator/video/7392019..." 
+                                        class="w-full pl-9 pr-3 rounded-xl border border-slate-200 bg-slate-50 py-2.5 text-xs focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 outline-none text-slate-800 transition-all placeholder:text-slate-400">
+                                </div>
+                            </div>
+                            
+                            <!-- Checkbox action selections -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">
+                                    Choose Actions
+                                </label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <label class="flex items-center justify-center gap-1.5 p-2.5 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100 transition-all select-none">
+                                        <input type="checkbox" id="followAction" checked class="w-3.5 h-3.5 rounded text-sky-500 bg-white border-slate-300 focus:ring-sky-400">
+                                        <span class="text-xs font-semibold text-slate-600">Follow</span>
+                                    </label>
+                                    <label class="flex items-center justify-center gap-1.5 p-2.5 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100 transition-all select-none">
+                                        <input type="checkbox" id="likeAction" checked class="w-3.5 h-3.5 rounded text-pink-500 bg-white border-slate-300 focus:ring-pink-400">
+                                        <span class="text-xs font-semibold text-slate-600">Like</span>
+                                    </label>
+                                    <label class="flex items-center justify-center gap-1.5 p-2.5 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100 transition-all select-none">
+                                        <input type="checkbox" id="commentCheckbox" checked class="w-3.5 h-3.5 rounded text-emerald-500 bg-white border-slate-300 focus:ring-emerald-400">
+                                        <span class="text-xs font-semibold text-slate-600">Comment</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Comment Spintax Area -->
+                            <div id="commentsConfigContainer" class="transition-all duration-200">
+                                <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5 flex justify-between items-center">
+                                    <span>Comment Spin-list (Separated by <code class="text-pink-500 bg-pink-50 px-1 py-0.5 rounded font-mono font-bold">||</code>)</span>
+                                    <span class="text-[9px] text-slate-400 lowercase">Rotates dynamically</span>
+                                </label>
+                                <textarea id="commentsInput" rows="2" 
+                                    placeholder="I Like It || I Love It || Amazing work! || Keep it up! || Mind-blowing!" 
+                                    class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 outline-none text-slate-800 transition-all resize-none placeholder:text-slate-400 font-mono"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Process Initialization Trigger Button -->
+                    <div class="mt-4">
+                        <button type="submit" form="commandForm" class="brand-gradient-btn text-white w-full py-3 rounded-xl text-xs font-black tracking-widest flex justify-center items-center gap-2 uppercase">
+                            <i class="fa-solid fa-play text-xs"></i> Initialize Action Sequence
+                        </button>
+                    </div>
+                </div>
+
+                <!-- GRID 3: Bottom Left - Task Configuration & Active Work Engine -->
+                <div class="premium-card rounded-2xl p-6 flex flex-col justify-between h-[410px]">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-gears text-indigo-500 text-lg"></i> Work Engine Settings
+                            </h2>
+                            <div id="engineStateBadge" class="bg-slate-100 text-slate-600 border border-slate-200 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                Engine Idle
+                            </div>
+                        </div>
+
+                        <!-- Admin Custom Target Controls & Delay Config -->
+                        <div class="grid grid-cols-2 gap-4 mb-5 p-4 bg-slate-50 border border-slate-200/80 rounded-xl">
+                            <!-- Custom Delay Throttler -->
+                            <div>
+                                <label for="delayInput" class="block text-[10px] font-black text-slate-500 uppercase tracking-wider mb-2">
+                                    Action Interval (Delay)
+                                </label>
+                                <div class="flex items-center bg-white rounded-lg border border-slate-200 px-3 py-1.5">
+                                    <input type="number" id="delayInput" value="3" min="1" max="120" 
+                                        class="w-full bg-transparent text-slate-800 font-extrabold text-sm border-none focus:outline-none focus:ring-0 p-0 text-center" title="Execution delay in seconds">
+                                    <span class="text-xs text-slate-400 font-semibold ml-1">sec</span>
+                                </div>
+                            </div>
+
+                            <!-- Target Action Goal/Count -->
+                            <div>
+                                <label for="targetLimit" class="block text-[10px] font-black text-slate-500 uppercase tracking-wider mb-2">
+                                    Target Goal Limit
+                                </label>
+                                <div class="flex items-center bg-white rounded-lg border border-slate-200 px-3 py-1.5">
+                                    <input type="number" id="targetLimit" value="10" min="1" max="500" 
+                                        class="w-full bg-transparent text-slate-800 font-extrabold text-sm border-none focus:outline-none focus:ring-0 p-0 text-center" title="How many times to loop">
+                                    <span class="text-xs text-slate-400 font-semibold ml-1">steps</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Active Live Step Monitor -->
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white shadow-sm flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-3">
+                                <div class="flex items-center gap-2">
+                                    <span class="relative flex h-2 w-2" id="livePingDot" style="display: none;">
+                                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                    </span>
+                                    <span class="w-2 h-2 rounded-full bg-slate-300" id="idlePingDot"></span>
+                                    <h4 class="text-xs font-bold text-slate-800 truncate max-w-[200px]" id="currentWorkingTaskLabel">Target: No target loaded</h4>
+                                </div>
+                                <span class="text-[10px] font-bold text-slate-500" id="countdownLabel">Idle</span>
+                            </div>
+
+                            <div class="flex justify-between text-[11px] text-slate-500 mb-2.5">
+                                <span id="activeActionListLabel">Ready to dispatch</span>
+                                <span class="font-mono text-slate-700 font-bold" id="progressText">0 / 0 actions completed</span>
+                            </div>
+
+                            <!-- Progress Track -->
+                            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200/50">
+                                <div id="progressFill" class="brand-gradient-btn h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Work Engine Operational Actions -->
+                    <div class="border-t border-slate-100 pt-4 flex gap-3">
+                        <button id="pauseEngineBtn" disabled class="flex-1 py-2 rounded-lg border border-slate-200 bg-slate-50 text-slate-400 font-bold text-xs hover:bg-slate-100 transition-all uppercase tracking-wider flex justify-center items-center gap-1.5">
+                            <i class="fa-solid fa-pause"></i> Pause Action
+                        </button>
+                        <button id="resetEngineBtn" disabled class="flex-1 py-2 rounded-lg border border-slate-200 bg-slate-50 text-slate-400 font-bold text-xs hover:bg-slate-100 transition-all uppercase tracking-wider flex justify-center items-center gap-1.5">
+                            <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- GRID 4: Bottom Right - Clean Log terminal -->
+                <div class="premium-card rounded-2xl flex flex-col h-[410px] overflow-hidden">
+                    <!-- Config Header / Toolbar for delay and target configurations -->
+                    <div class="p-3.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-terminal text-slate-500"></i>
+                            <span class="text-slate-700 text-xs font-bold tracking-wider uppercase">Live Activity Terminal</span>
+                        </div>
+                        
+                        <!-- Interactive Controllers: Target Display -->
+                        <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded-lg border border-slate-200">
+                                <span class="text-[9px] font-black text-slate-400">ANCHOR:</span>
+                                <span id="lockedTargetBadge" class="text-[9px] text-sky-600 font-mono font-extrabold truncate max-w-[120px]" title="Currently loaded anchor target">None</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Light Terminal Screen -->
+                    <div class="p-4 flex-1 overflow-y-auto space-y-2 text-xs font-mono bg-white text-slate-700 custom-scrollbar" id="logContainer">
+                        <div class="text-emerald-600 flex items-center gap-2"><span class="text-slate-400 font-light">[SYS]</span> <span class="bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded font-bold text-[9px] uppercase border border-emerald-100">Ready</span> Log system initialized. Ready to record.</div>
+                        <div class="text-sky-600 flex items-center gap-2"><span class="text-slate-400 font-light">[AUTH]</span> Secure system socket handshakes established.</div>
+                    </div>
+
+                    <!-- Clean light footer detailing buffers -->
+                    <div class="p-2 border-t border-slate-200 bg-slate-50 text-[9px] text-slate-400 font-mono flex justify-between px-4">
+                        <span>SYS_STATUS: READY</span>
+                        <span>BUFFER: ACTIVE</span>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- White label clean footer -->
+            <footer class="mt-8 text-center text-[10px] text-slate-400 py-4 border-t border-slate-200">
+                &copy; 2026 <span class="font-extrabold text-slate-500">TokBot</span> Automation Suite. Built with safe sequential execution modules. Please automate responsibly.
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Toggle comment textarea block based on Comment checkbox state
+            const commentCheckbox = document.getElementById('commentCheckbox');
+            const commentsConfigContainer = document.getElementById('commentsConfigContainer');
+            const commentsInput = document.getElementById('commentsInput');
+
+            function toggleCommentsArea() {
+                if (commentCheckbox.checked) {
+                    commentsConfigContainer.style.opacity = '1';
+                    commentsConfigContainer.style.pointerEvents = 'auto';
+                    commentsInput.removeAttribute('disabled');
+                } else {
+                    commentsConfigContainer.style.opacity = '0.3';
+                    commentsConfigContainer.style.pointerEvents = 'none';
+                    commentsInput.setAttribute('disabled', 'true');
+                }
+            }
+
+            commentCheckbox.addEventListener('change', toggleCommentsArea);
+            toggleCommentsArea(); // Initial assessment
+
+
+            // System States and Live Interactive Engine Controllers
+            const logContainer = document.getElementById('logContainer');
+            const delayInput = document.getElementById('delayInput');
+            const targetLimitInput = document.getElementById('targetLimit');
+            const lockedTargetBadge = document.getElementById('lockedTargetBadge');
+            const commandForm = document.getElementById('commandForm');
+            const targetLinkInput = document.getElementById('targetLink');
+            
+            const currentWorkingTaskLabel = document.getElementById('currentWorkingTaskLabel');
+            const progressText = document.getElementById('progressText');
+            const progressFill = document.getElementById('progressFill');
+            const activeActionListLabel = document.getElementById('activeActionListLabel');
+            
+            const livePingDot = document.getElementById('livePingDot');
+            const idlePingDot = document.getElementById('idlePingDot');
+            const countdownLabel = document.getElementById('countdownLabel');
+            const engineStateBadge = document.getElementById('engineStateBadge');
+            
+            const pauseEngineBtn = document.getElementById('pauseEngineBtn');
+            const resetEngineBtn = document.getElementById('resetEngineBtn');
+
+            let currentStep = 0;
+            let targetGoal = 10;
+            let executionTimer = null;
+            let countdownInterval = null;
+            let isPaused = false;
+            let parsedCommentsList = [];
+            let activeTargetLink = '';
+            let selectedDelay = 3;
+
+            // Generate beautifully timed system logs inside light container
+            function addLogLine(system, message, type = 'info') {
+                const now = new Date();
+                const timeString = `[${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}]`;
+                
+                const logEntry = document.createElement('div');
+                logEntry.className = 'flex items-start gap-2 transition-all duration-300 opacity-0 transform translate-y-0.5';
+                
+                let systemBadge = `<span class="text-slate-400 font-light">${system}</span>`;
+                let contentClass = 'text-slate-600';
+
+                if (type === 'success') {
+                    contentClass = 'text-emerald-600 font-medium';
+                } else if (type === 'warning') {
+                    contentClass = 'text-amber-600 font-medium';
+                } else if (type === 'error') {
+                    contentClass = 'text-rose-600 font-semibold';
+                } else if (type === 'action') {
+                    contentClass = 'text-sky-600 font-semibold';
+                } else if (type === 'brand') {
+                    contentClass = 'text-pink-600 font-semibold';
+                }
+
+                logEntry.innerHTML = `${timeString} ${systemBadge} <span class="${contentClass}">${message}</span>`;
+                logContainer.appendChild(logEntry);
+                
+                // Animate entrance nicely
+                setTimeout(() => {
+                    logEntry.classList.remove('opacity-0', 'translate-y-0.5');
+                }, 10);
+
+                // Auto Scroll
+                logContainer.scrollTop = logContainer.scrollHeight;
+
+                // Max log size limits
+                if (logContainer.children.length > 50) {
+                    logContainer.removeChild(logContainer.firstChild);
+                }
+            }
+
+            // Command Launch Handling
+            commandForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                activeTargetLink = targetLinkInput.value.trim();
+                selectedDelay = Math.max(1, parseInt(delayInput.value) || 3);
+                targetGoal = Math.max(1, parseInt(targetLimitInput.value) || 10);
+
+                // Process spintax comment options
+                parsedCommentsList = ["I Like It", "I Love It", "Amazing creation!", "Keep it up!"];
+                if (commentCheckbox.checked && commentsInput.value.trim() !== "") {
+                    parsedCommentsList = commentsInput.value.split('||').map(str => str.trim()).filter(str => str.length > 0);
+                }
+
+                // Verify at least one actions is active
+                const followActive = document.getElementById('followAction').checked;
+                const likeActive = document.getElementById('likeAction').checked;
+                const commentActive = commentCheckbox.checked;
+
+                if (!followActive && !likeActive && !commentActive) {
+                    addLogLine('[ERROR]', `Cannot start automation without checking at least one action.`, 'error');
+                    return;
+                }
+
+                // Update UI layout states
+                lockedTargetBadge.innerText = activeTargetLink.split('/').filter(Boolean).pop() || "Loaded Target";
+                lockedTargetBadge.title = activeTargetLink;
+                currentWorkingTaskLabel.innerText = `Target: ${activeTargetLink.replace('https://', '').substring(0, 25)}...`;
+
+                // Set actionable texts
+                const list = [];
+                if (followActive) list.push('Follow');
+                if (likeActive) list.push('Like');
+                if (commentActive) list.push('Comment');
+                activeActionListLabel.innerText = `Active Actions: ${list.join(', ')}`;
+
+                // Reset step stats
+                currentStep = 0;
+                isPaused = false;
+                updateProgressDisplay();
+
+                // Setup Active State Visuals
+                livePingDot.style.display = 'inline-flex';
+                idlePingDot.style.display = 'none';
+                engineStateBadge.className = "bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider";
+                engineStateBadge.innerText = "Engine Running";
+
+                pauseEngineBtn.removeAttribute('disabled');
+                pauseEngineBtn.className = "flex-1 py-2 rounded-lg border border-slate-200 bg-white text-slate-700 font-bold text-xs hover:bg-slate-100 transition-all uppercase tracking-wider flex justify-center items-center gap-1.5 shadow-sm";
+                pauseEngineBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause Action';
+                
+                resetEngineBtn.removeAttribute('disabled');
+                resetEngineBtn.className = "flex-1 py-2 rounded-lg border border-slate-200 bg-white text-slate-700 font-bold text-xs hover:bg-slate-100 transition-all uppercase tracking-wider flex justify-center items-center gap-1.5 shadow-sm";
+
+                // Log Start action
+                addLogLine('[SYS]', `Loaded action sequential target: ${activeTargetLink}`, 'brand');
+                addLogLine('[SYS]', `Limit set to ${targetGoal} loops. Delay throttle set to ${selectedDelay}s.`, 'info');
+
+                // Launch first loop step
+                clearScheduledEngine();
+                executeSequentialLoop();
+
+                // Show safe notification toast
+                showToastNotification("Engine Initiated", "Starting sequence one by one...");
+            });
+
+            // Sequential engine driver - Performs ONE action then waits the defined delay
+            function executeSequentialLoop() {
+                if (isPaused) return;
+
+                if (currentStep < targetGoal) {
+                    currentStep++;
+                    updateProgressDisplay();
+
+                    // Retrieve dynamic selections
+                    const followActive = document.getElementById('followAction').checked;
+                    const likeActive = document.getElementById('likeAction').checked;
+                    const commentActive = commentCheckbox.checked;
+
+                    const activeOptions = [];
+                    if (followActive) activeOptions.push('follow');
+                    if (likeActive) activeOptions.push('like');
+                    if (commentActive) activeOptions.push('comment');
+
+                    if (activeOptions.length > 0) {
+                        const actionToPerform = activeOptions[Math.floor(Math.random() * activeOptions.length)];
+                        
+                        // Execute Step (One-By-One Log Dispatch)
+                        if (actionToPerform === 'follow') {
+                            addLogLine('[STEP]', `(${currentStep}/${targetGoal}) Processed step: Follow channel context successfully.`, 'action');
+                        } else if (actionToPerform === 'like') {
+                            addLogLine('[STEP]', `(${currentStep}/${targetGoal}) Processed step: Liked targeted video post.`, 'success');
+                        } else if (actionToPerform === 'comment') {
+                            const selectedComment = parsedCommentsList[Math.floor(Math.random() * parsedCommentsList.length)] || "Nice video!";
+                            addLogLine('[STEP]', `(${currentStep}/${targetGoal}) Comment dispatch: "${selectedComment}"`, 'brand');
+                        }
+                    }
+
+                    // If steps are finished in this line, conclude immediately, otherwise schedule next
+                    if (currentStep >= targetGoal) {
+                        concludeSequence();
+                    } else {
+                        startCountdown(selectedDelay);
+                    }
+                }
+            }
+
+            // Simple visual countdown tracker for "one by one" operations
+            function startCountdown(secondsLeft) {
+                let currentCountdown = secondsLeft;
+                countdownLabel.innerText = `Next action in ${currentCountdown}s`;
+                
+                countdownInterval = setInterval(() => {
+                    currentCountdown--;
+                    if (currentCountdown <= 0) {
+                        clearInterval(countdownInterval);
+                        executeSequentialLoop();
+                    } else {
+                        countdownLabel.innerText = `Next action in ${currentCountdown}s`;
+                    }
+                }, 1000);
+            }
+
+            // Progress Bar & Stats Updates
+            function updateProgressDisplay() {
+                const percent = Math.min(100, Math.floor((currentStep / targetGoal) * 100));
+                progressFill.style.width = `${percent}%`;
+                progressText.innerText = `${currentStep} / ${targetGoal} actions completed`;
+            }
+
+            // Pause toggle handler
+            pauseEngineBtn.addEventListener('click', () => {
+                if (!activeTargetLink) return;
+
+                if (isPaused) {
+                    // Resume
+                    isPaused = false;
+                    pauseEngineBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause Action';
+                    engineStateBadge.innerText = "Engine Running";
+                    engineStateBadge.className = "bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider";
+                    livePingDot.style.display = 'inline-flex';
+                    idlePingDot.style.display = 'none';
+                    addLogLine('[SYS]', `Sequential execution resumed.`, 'info');
+                    executeSequentialLoop();
+                } else {
+                    // Pause
+                    isPaused = true;
+                    pauseEngineBtn.innerHTML = '<i class="fa-solid fa-play"></i> Resume Action';
+                    engineStateBadge.innerText = "Engine Paused";
+                    engineStateBadge.className = "bg-amber-50 text-amber-700 border border-amber-200 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider";
+                    livePingDot.style.display = 'none';
+                    idlePingDot.style.display = 'inline-flex';
+                    clearInterval(countdownInterval);
+                    clearTimeout(executionTimer);
+                    countdownLabel.innerText = `Paused`;
+                    addLogLine('[SYS]', `Sequential execution paused by administrator.`, 'warning');
+                }
+            });
+
+            // Reset handler
+            resetEngineBtn.addEventListener('click', () => {
+                clearScheduledEngine();
+                currentStep = 0;
+                activeTargetLink = '';
+                updateProgressDisplay();
+
+                countdownLabel.innerText = 'Idle';
+                currentWorkingTaskLabel.innerText = 'Target: No target loaded';
+                activeActionListLabel.innerText = 'Ready to dispatch';
+                lockedTargetBadge.innerText = 'None';
+                
+                livePingDot.style.display = 'none';
+                idlePingDot.style.display = 'inline-flex';
+                
+                engineStateBadge.innerText = "Engine Idle";
+                engineStateBadge.className = "bg-slate-100 text-slate-600 border border-slate-200 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider";
+
+                // Reset buttons
+                pauseEngineBtn.setAttribute('disabled', 'true');
+                pauseEngineBtn.className = "flex-1 py-2 rounded-lg border border-slate-200 bg-slate-50 text-slate-400 font-bold text-xs hover:bg-slate-100 transition-all uppercase tracking-wider flex justify-center items-center gap-1.5";
+                pauseEngineBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause Action';
+
+                resetEngineBtn.setAttribute('disabled', 'true');
+                resetEngineBtn.className = "flex-1 py-2 rounded-lg border border-slate-200 bg-slate-50 text-slate-400 font-bold text-xs hover:bg-slate-100 transition-all uppercase tracking-wider flex justify-center items-center gap-1.5";
+
+                addLogLine('[SYS]', `Session task and metrics wiped. Waiting for next instruction sequence.`, 'info');
+            });
+
+            function concludeSequence() {
+                clearScheduledEngine();
+                countdownLabel.innerText = 'Done';
+                livePingDot.style.display = 'none';
+                idlePingDot.style.display = 'inline-flex';
+                engineStateBadge.innerText = "Finished";
+                engineStateBadge.className = "bg-indigo-50 text-indigo-700 border border-indigo-200 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider";
+                
+                addLogLine('[SYS]', `All target steps finished successfully. Task completed step-by-step.`, 'success');
+                showToastNotification("Sequence Complete", "Target goals met with secure delays.");
+            }
+
+            function clearScheduledEngine() {
+                clearInterval(countdownInterval);
+                clearTimeout(executionTimer);
+            }
+
+            // Custom non-breaking UI Toast alerts
+            function showToastNotification(title, msg) {
+                const toast = document.createElement('div');
+                toast.className = 'fixed bottom-4 right-4 bg-white border border-slate-200 text-slate-800 px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 transition-opacity duration-300 z-50';
+                toast.innerHTML = `
+                    <div class="p-1 bg-emerald-50 text-emerald-600 rounded-lg">
+                        <i class="fa-solid fa-circle-check text-base"></i>
+                    </div>
+                    <div>
+                        <p class="font-extrabold text-xs text-slate-900 leading-none">${title}</p>
+                        <p class="text-[10px] text-slate-500 mt-1 leading-none">${msg}</p>
+                    </div>
+                `;
+                document.body.appendChild(toast);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
