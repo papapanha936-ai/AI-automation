@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Credentials (service-account keys must NEVER be committed)
+credentials/
+*.json.enc
+
+# Logs
+*.log
+npm-debug.log*
+server.out.log
+server.err.log
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Runtime / build artifacts
+dist/
+build/
+*.pid
+*.seed
